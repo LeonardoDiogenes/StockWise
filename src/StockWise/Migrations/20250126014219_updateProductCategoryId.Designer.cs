@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StockWise.Repository;
 
@@ -11,9 +12,11 @@ using StockWise.Repository;
 namespace StockWise.Migrations
 {
     [DbContext(typeof(StockWiseContext))]
-    partial class StockWiseContextModelSnapshot : ModelSnapshot
+    [Migration("20250126014219_updateProductCategoryId")]
+    partial class updateProductCategoryId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,23 +42,6 @@ namespace StockWise.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Eletrônicos"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Informática"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Celulares"
-                        });
                 });
 
             modelBuilder.Entity("StockWise.Models.Inventory_Log", b =>
@@ -124,38 +110,6 @@ namespace StockWise.Migrations
                     b.HasIndex("SupplierId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            Description = "A latest generation smartphone with advanced features.",
-                            Image = "https://example.com/images/smartphone-x.jpg",
-                            Name = "Smartphone X",
-                            Price = 999.99000000000001,
-                            StockQuantity = 50
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 1,
-                            Description = "A high-performance laptop for professionals.",
-                            Image = "https://example.com/images/laptop-pro.jpg",
-                            Name = "Laptop Pro",
-                            Price = 1499.99,
-                            StockQuantity = 30
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryId = 2,
-                            Description = "A comfortable and stylish t-shirt.",
-                            Image = "https://example.com/images/tshirt-casual.jpg",
-                            Name = "T-Shirt Casual",
-                            Price = 29.989999999999998,
-                            StockQuantity = 100
-                        });
                 });
 
             modelBuilder.Entity("StockWise.Models.Supplier", b =>
@@ -178,22 +132,6 @@ namespace StockWise.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Suppliers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "123 Tech Street, Tech City",
-                            Contact = "contact@techsupplier.com",
-                            Name = "Tech Supplier Inc."
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "456 Fashion Avenue, Style City",
-                            Contact = "info@fashionsupplier.com",
-                            Name = "Fashion Supplier Ltd."
-                        });
                 });
 
             modelBuilder.Entity("StockWise.Models.User", b =>
@@ -222,26 +160,6 @@ namespace StockWise.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "admin@stockwise.com",
-                            Image = "https://example.com/images/admin.jpg",
-                            Name = "Admin",
-                            Password = "admin123",
-                            Role = "Admin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Email = "user@stockwise.com",
-                            Image = "https://example.com/images/user.jpg",
-                            Name = "User",
-                            Password = "user123",
-                            Role = "User"
-                        });
                 });
 
             modelBuilder.Entity("StockWise.Models.Inventory_Log", b =>

@@ -7,7 +7,7 @@ public class Product
     public string? Description { get; set; }
     public double Price { get; set; }
     public int StockQuantity { get; set; }
-    public string? CategoryId { get; set; }
+    public int? CategoryId { get; set; }
     public Category? Category { get; set; }
     public string? Image { get; set; }
 }

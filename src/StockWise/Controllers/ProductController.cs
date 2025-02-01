@@ -7,22 +7,22 @@ namespace StockWise.Controllers;
 [ApiController]
 [Route("[controller]")]
 
-public class UserController : Controller
+public class ProductController : Controller
 {
-  private readonly IUserRepository _userRepository;
+  private readonly IProductRepository _productRepository;
 
-  public UserController(IUserRepository userRepository)
+  public ProductController(IProductRepository productRepository)
   {
-    _userRepository = userRepository;
+    _productRepository = productRepository;
   }
 
   [HttpGet]
-  public IActionResult GetUsers()
+  public IActionResult GetProducts()
   {
     try
     {
-      var users = _userRepository.GetUsers();
-      return Ok(users);
+      var products = _productRepository.Get();
+      return Ok(products);
     }
     catch (Exception ex)
     {
@@ -31,12 +31,12 @@ public class UserController : Controller
   }
 
   [HttpPost]
-  public IActionResult AddUser([FromBody] UserDtoInput user)
+  public IActionResult AddProduct([FromBody] InsertProductDto product)
   {
     try
     {
-      var newUser = _userRepository.AddUser(user);
-      return Created("", newUser);
+      var newProduct = _productRepository.Add(product);
+      return Created("", newProduct);
     }
     catch (InvalidOperationException ex)
     {
@@ -45,12 +45,12 @@ public class UserController : Controller
   }
 
   [HttpPut("{id}")]
-  public IActionResult UpdateUser(int id, [FromBody] UserDtoInput user)
+  public IActionResult UpdateProduct(int id, [FromBody] InsertProductDto product)
   {
     try
     {
-      var updatedUser = _userRepository.UpdateUser(user, id);
-      return Ok(updatedUser);
+      var updatedProduct = _productRepository.Update(product, id);
+      return Ok(updatedProduct);
     }
     catch (InvalidOperationException ex)
     {
@@ -59,11 +59,11 @@ public class UserController : Controller
   }
 
   [HttpDelete("{id}")]
-  public IActionResult DeleteUser(int id)
+  public IActionResult DeleteProduct(int id)
   {
     try
     {
-      _userRepository.DeleteUser(id);
+      _productRepository.Delete(id);
       return NoContent();
     }
     catch (InvalidOperationException ex)
@@ -72,10 +72,4 @@ public class UserController : Controller
     }
   }
 
-
-
-
 }
-
-
-
