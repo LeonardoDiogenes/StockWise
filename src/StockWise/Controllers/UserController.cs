@@ -47,6 +47,11 @@ public class UserController : Controller
   [HttpPut("{id}")]
   public IActionResult UpdateUser(int id, [FromBody] UserDtoInput user)
   {
+    if (!ModelState.IsValid)
+    {
+      return BadRequest(ModelState);
+    }
+
     try
     {
       var updatedUser = _userRepository.UpdateUser(user, id);

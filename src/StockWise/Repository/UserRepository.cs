@@ -71,26 +71,11 @@ public class UserRepository : IUserRepository
     {
       throw new InvalidOperationException("User not found");
     }
-    if (user.Name != null)
-    {
-      userToUpdate.Name = user.Name;
-    }
-    if (user.Email != null)
-    {
-      userToUpdate.Email = user.Email;
-    }
-    if (user.Role != null)
-    {
-      userToUpdate.Role = user.Role;
-    }
-    if (user.Password != null)
-    {
-      userToUpdate.Password = user.Password;
-    }
-    if (user.Image != null)
-    {
-      userToUpdate.Image = user.Image;
-    }
+    userToUpdate.Name = user.Name;
+    userToUpdate.Email = user.Email;
+    userToUpdate.Password = user.Password;
+    userToUpdate.Role = user.Role;
+    userToUpdate.Image = user.Image;
     _context.SaveChanges();
     return new UserDto
     {
